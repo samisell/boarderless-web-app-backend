@@ -26,7 +26,6 @@ services:
              python manage.py collectstatic --no-input &&
              gunicorn bn_backend.wsgi:application --bind 0.0.0.0:8000"
     volumes:
-      - .:/app
       - static_volume:/app/static
       - media_volume:/app/media
     expose:
