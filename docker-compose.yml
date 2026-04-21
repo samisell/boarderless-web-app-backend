@@ -1,7 +1,7 @@
 version: '3.8'
 
 # Portainer Stack Configuration
-# Git URL: https://github.com/your-username/borderless-network-backend.git
+# Git URL: https://github.com/samisell/boarderless-web-app-backend
 
 services:
   db:
@@ -17,7 +17,9 @@ services:
       - borderless_network
 
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: borderless_backend
     command: >
       sh -c "python manage.py migrate &&
