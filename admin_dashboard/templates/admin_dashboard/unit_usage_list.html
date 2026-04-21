@@ -1,0 +1,40 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Unit Usage</h1>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-minus-circle me-1"></i>
+            All Unit Usage
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Units Used</th>
+                        <th>Service</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usage in unit_usages %}
+                    <tr>
+                        <td>{{ usage.user.email }}</td>
+                        <td>{{ usage.units_used }}</td>
+                        <td>{{ usage.service_description }}</td>
+                        <td>{{ usage.timestamp|date:"Y-m-d H:i" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">No unit usage found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% include 'admin_dashboard/pagination.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

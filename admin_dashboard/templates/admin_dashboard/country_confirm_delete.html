@@ -1,0 +1,18 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block title %}Delete Country{% endblock %}
+
+{% block page_title %}Delete Country{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'admin_dashboard:country_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit Country{% else %}Add Country{% endif %}{% endblock %}
+
+{% block page_title %}{% if form.instance.pk %}Edit Country{% else %}Add Country{% endif %}{% endblock %}
+
+{% block content %}
+<style>
+    .form-container {
+        background-color: #212529;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        border: 1px solid #454d55;
+        color: #dee2e6;
+    }
+
+    .form-container .form-control {
+        background-color: #343a40;
+        color: #fff;
+        border-color: #454d55;
+    }
+
+    .form-container .form-control:focus {
+        background-color: #343a40;
+        color: #fff;
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+    }
+
+    .btn-gold {
+        background-color: #ffc107;
+        border-color: #ffc107;
+        color: #212529;
+        font-weight: bold;
+    }
+</style>
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-gold">Save Country</button>
+                    <a href="{% url 'admin_dashboard:country_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

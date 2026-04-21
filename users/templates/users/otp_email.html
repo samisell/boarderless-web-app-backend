@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your One-Time Password (OTP)</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            background-color: #007bff;
+            padding: 30px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 30px 20px;
+            color: #333333;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .content p {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .otp-box {
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 15px 20px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .otp-box strong {
+            font-size: 32px;
+            color: #007bff;
+            letter-spacing: 5px;
+            display: block;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 100% !important;
+                border-radius: 0;
+            }
+
+            .header h1 {
+                font-size: 24px !important;
+            }
+
+            .content,
+            .header,
+            .footer {
+                padding: 20px 15px !important;
+            }
+
+            .otp-box strong {
+                font-size: 28px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table class="container" role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td class="header">
+                            <h1>Boarderless Network</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content">
+                            <p>Hello,</p>
+                            <p>You recently requested a One-Time Password (OTP) for your account. Please use the
+                                following code to complete your action:</p>
+                            <div class="otp-box">
+                                <strong>{{ otp }}</strong>
+                            </div>
+                            <p>This OTP is valid for 5 minutes. Please do not share this code with anyone.</p>
+                            <p>If you did not request this, please ignore this email.</p>
+                            <p>Thank you,<br>The Borderless Team</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="footer">
+                            <p>&copy; {{ year }} Borderless. All rights reserved.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

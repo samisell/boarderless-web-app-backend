@@ -1,0 +1,42 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block title %}Countries{% endblock %}
+
+{% block page_title %}Countries{% endblock %}
+
+{% block content %}
+<div class="row my-4">
+    <div class="col">
+        <a href="{% url 'admin_dashboard:country_add' %}" class="btn btn-primary">Add Country</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table class="table bg-white rounded shadow-sm  table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" width="50">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for country in countries %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ country.name }}</td>
+                    <td>{{ country.code }}</td>
+                    <td>
+                        <a href="{% url 'admin_dashboard:country_update' country.pk %}"
+                            class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'admin_dashboard:country_delete' country.pk %}"
+                            class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

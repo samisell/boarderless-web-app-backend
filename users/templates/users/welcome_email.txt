@@ -1,0 +1,13 @@
+Hello {{ username }},
+
+Thank you for registering with Borderless! We're excited to have you on board.
+
+To get started, please verify your email address using the One-Time Password (OTP) sent in a separate email. Once verified, you can log in and start building your profile.
+
+Go to Login: {{ login_url }}
+
+If you have any questions, feel free to reach out to our support team.
+
+Best regards,
+The Borderless Team
+© {{ year }} Borderless. All rights reserved.

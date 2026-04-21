@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Boarderless!</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            background-color: #28a745;
+            /* Green for welcome */
+            padding: 30px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 30px 20px;
+            color: #333333;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .content p {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 100% !important;
+                border-radius: 0;
+            }
+
+            .header h1 {
+                font-size: 24px !important;
+            }
+
+            .content,
+            .header,
+            .footer {
+                padding: 20px 15px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <table class="container" role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td class="header">
+                            <h1>Welcome to Borderless Network!</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content">
+                            <p>Hello {{ username }},</p>
+                            <p>Thank you for registering with Borderless! We're excited to have you on board.</p>
+                            <p>To get started, please verify your email address using the One-Time Password (OTP) sent
+                                in a separate email. Once verified, you can log in and start building your profile.</p>
+                            <p style="text-align: center;">
+                                <a href="{{ login_url }}" class="button">Go to Login</a>
+                            </p>
+                            <p>If you have any questions, feel free to reach out to our support team.</p>
+                            <p>Best regards,<br>The Borderless Team</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="footer">
+                            <p>&copy; {{ year }} Borderless. All rights reserved.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+version: '3.8'
+
+# Portainer Stack Configuration
+# Git URL: https://github.com/your-username/borderless-network-backend.git
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: borderless_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME:-borderless_db}
+      - POSTGRES_USER=${DB_USER:-borderless_user}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-db_password}
+    networks:
+      - borderless_network
+
+  web:
+    build: .
+    container_name: borderless_backend
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --no-input &&
+             gunicorn bn_backend.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/static
+      - media_volume:/app/media
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+      - SECRET_KEY=${SECRET_KEY}
+      - DB_NAME=${DB_NAME:-borderless_db}
+      - DB_USER=${DB_USER:-borderless_user}
+      - DB_PASSWORD=${DB_PASSWORD:-db_password}
+      - DB_HOST=db
+      - DB_PORT=5432
+      - EMAIL_BACKEND=${EMAIL_BACKEND}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_PORT=${EMAIL_PORT}
+      - EMAIL_USE_TLS=${EMAIL_USE_TLS}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - TWILIO_PHONE_NUMBER=${TWILIO_PHONE_NUMBER}
+      - PAYSTACK_PUBLIC_KEY=${PAYSTACK_PUBLIC_KEY}
+      - PAYSTACK_SECRET_KEY=${PAYSTACK_SECRET_KEY}
+      - FLUTTERWAVE_PUBLIC_KEY=${FLUTTERWAVE_PUBLIC_KEY}
+      - FLUTTERWAVE_SECRET_KEY=${FLUTTERWAVE_SECRET_KEY}
+    depends_on:
+      - db
+    networks:
+      - borderless_network
+
+networks:
+  borderless_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

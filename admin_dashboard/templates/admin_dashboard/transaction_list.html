@@ -1,0 +1,133 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block title %}Transaction Management{% endblock %}
+
+{% block page_title %}All Transactions{% endblock %}
+
+{% block content %}
+<style>
+    .table {
+        color: #dee2e6;
+    }
+
+    .table-hover tbody tr:hover {
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.075);
+    }
+
+    .thead-dark th {
+        background-color: #343a40;
+        border-color: #454d55;
+        color: #ffc107;
+    }
+
+    .badge {
+        padding: 0.4em 0.6em;
+        font-size: 0.8em;
+    }
+
+    .badge-success {
+        background-color: #198754;
+        color: white;
+    }
+
+    .badge-warning {
+        background-color: #ffc107;
+        color: #000;
+    }
+
+    .badge-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .badge-info {
+        background-color: #0dcaf0;
+        color: #000;
+    }
+
+    .badge-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .action-btn {
+        color: #adb5bd;
+        margin: 0 5px;
+        transition: color 0.2s;
+    }
+
+    .action-btn:hover {
+        color: #ffc107;
+    }
+
+    .pagination .page-link {
+        background-color: #343a40;
+        border-color: #454d55;
+        color: #ffc107;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #ffc107;
+        border-color: #ffc107;
+        color: #212529;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        background-color: #212529;
+        border-color: #454d55;
+        color: #6c757d;
+    }
+</style>
+
+<div class="row">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table bg-dark rounded shadow-sm table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">User</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Method</th>
+                        <th scope="col">Reference</th>
+                        <th scope="col">Date</th>
+                        <th scope="col" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tx in transactions %}
+                    <tr>
+                        <td>{{ tx.wallet.user.email }}</td>
+                        <td>
+                            <span
+                                class="badge {% if tx.transaction_type == 'fund' %}badge-success{% elif tx.transaction_type == 'purchase' %}badge-danger{% else %}badge-secondary{% endif %} text-capitalize">{{
+                                tx.transaction_type }}</span>
+                        </td>
+                        <td>${{ tx.amount|floatformat:2 }}</td>
+                        <td>
+                            <span
+                                class="badge {% if tx.status == 'completed' %}badge-success{% elif tx.status == 'pending' %}badge-warning{% else %}badge-danger{% endif %} text-capitalize">{{
+                                tx.status }}</span>
+                        </td>
+                        <td class="text-capitalize">{{ tx.payment_method|default:"N/A" }}</td>
+                        <td>{{ tx.reference|truncatechars:15 }}</td>
+                        <td>{{ tx.timestamp|date:"M d, Y, P" }}</td>
+                        <td class="text-center">
+                            <a href="#" class="action-btn" title="View Details"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="action-btn" title="Refund Transaction"><i class="fas fa-undo"></i></a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="8" class="text-center py-4">No transactions found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

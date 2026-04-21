@@ -1,0 +1,49 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block title %}Twilio Numbers{% endblock %}
+
+{% block page_title %}Purchased Twilio Numbers{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table bg-dark rounded shadow-sm table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">User</th>
+                        <th scope="col">Purchased At</th>
+                        <th scope="col">Expires At</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for number in twilio_numbers %}
+                    <tr>
+                        <td>{{ number.phone_number }}</td>
+                        <td>{{ number.user.email }}</td>
+                        <td>{{ number.purchased_at|date:"M d, Y, P" }}</td>
+                        <td>{{ number.subscription_end_date|date:"M d, Y, P" }}</td>
+                        <td>
+                            <span
+                                class="badge {% if number.is_active %}badge-success{% else %}badge-danger{% endif %}">{{
+                                number.subscription_status }}</span>
+                        </td>
+                        <td class="text-center">
+                            <a href="#" class="action-btn" title="View Details"><i class="fas fa-eye"></i></a>
+                            <a href="#" class="action-btn" title="Deactivate"><i class="fas fa-ban"></i></a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-4">No numbers found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

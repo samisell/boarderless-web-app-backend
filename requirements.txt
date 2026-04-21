@@ -1,0 +1,13 @@
+django
+requests
+djangorestframework
+psycopg2-binary
+djangorestframework-simplejwt
+
+python-dotenv
+django-cors-headers
+certifi
+Pillow
+requests
+twilio
+gunicorn
